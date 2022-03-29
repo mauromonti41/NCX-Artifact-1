@@ -8,7 +8,7 @@
 import Foundation
 
 enum Constants{
-    static let baseURL = "http://127.0.0.1:8080/"
+    static let baseURL = "https://server-side-example.herokuapp.com/"
 }
 //For endPoint we pratically means the object that goes after the last / of the baseURL in order to access the precise file
 enum EndPoints{

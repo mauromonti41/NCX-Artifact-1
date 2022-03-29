@@ -45,6 +45,7 @@ final class AddUpdateSongViewModel : ObservableObject{
         Task{
             do{
             if isUpdating{
+                        try await updateSong()
                 
             }
             else{
@@ -58,4 +59,14 @@ final class AddUpdateSongViewModel : ObservableObject{
 //            we add a completion since we have to wait that the add or update action finishes
     }
 }
+    func updateSong() async throws{
+        let urlString = Constants.baseURL + EndPoints.songs
+        guard let url = URL(string: urlString) else{
+            throw HttpError.badURL
+        }
+        let songToUpdate = Song(id: songID, title: songTitle)
+        try await HttpClient.shared.sendData(to: url, object: songToUpdate, httpMethod: HttpMethods.PUT.rawValue)
+    }
+    
+
 }
